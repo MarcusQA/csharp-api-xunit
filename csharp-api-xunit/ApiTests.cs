@@ -35,7 +35,7 @@ namespace csharp_api_xunit
             dynamic jsonDeserialised = JsonConvert.DeserializeObject<dynamic>(responseJson)!;
             var actualTitle = jsonDeserialised.title.ToString();
 
-            Assert.Equal("foo", actualTitle);
+            Assert.Equal("fooXXX", actualTitle);
         }
 
         [Fact]
