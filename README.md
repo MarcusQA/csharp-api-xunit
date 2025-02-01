@@ -1,6 +1,6 @@
 # Summary
 
-This is a project to show a basic set of API tests which use C# and xUnit. The tests print out HTTP requests in cURL format and dynamically deserialise response JSON objects.
+This is a project to show a basic set of API tests which use C# and xUnit. The tests print out HTTP requests in cURL format (so they can be run manually for investigation purposes if necessary) and dynamically deserialise response JSON objects.
 
 # Running the tests
 
