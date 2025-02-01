@@ -10,6 +10,9 @@ jobs:
   build-and-test:
     runs-on: windows-latest
     steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+      
     - name: Run API tests
       run: dotnet test --logger "trx;LogFileName=test-results.trx"
 
