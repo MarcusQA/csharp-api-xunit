@@ -75,9 +75,10 @@ namespace csharp_api_xunit
         }
 
         [Fact]
-        public async Task DeletePost_ShouldReturnCorrectTitle()
+        public async Task DeletePost_ShouldReturnEmptyResponse()
         {
-            var response = await MakeHttpRequestAsync(HttpMethod.Delete, $"{_defaultBaseUri}/posts/1");
+            // Let's say we don't wish to print out the request as cURL
+            var response = await MakeHttpRequestAsync(HttpMethod.Delete, $"{_defaultBaseUri}/posts/1", printCurl: false);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             string responseJson = await response.Content.ReadAsStringAsync();

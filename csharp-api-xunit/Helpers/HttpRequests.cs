@@ -6,7 +6,7 @@ namespace csharp_api_xunit.Helpers
 {
     public class HttpRequests
     {
-        public static async Task<HttpResponseMessage> MakeHttpRequestAsync(HttpMethod method, string uri, Dictionary<string, string>? headers = null, string? body = null)
+        public static async Task<HttpResponseMessage> MakeHttpRequestAsync(HttpMethod method, string uri, Dictionary<string, string>? headers = null, string? body = null, bool printCurl = true)
         {
 
             var request = new HttpRequestMessage(method, uri);
@@ -25,7 +25,11 @@ namespace csharp_api_xunit.Helpers
                 }
             }
 
-            PrintCurlCommand(request);
+            // Only print out cURL when the request does not contain sensitive data such as secrets
+            if (printCurl)
+            {
+                PrintCurlCommand(request);
+            }
 
             var _httpClient = new HttpClient();
             var response = await _httpClient.SendAsync(request);
@@ -46,7 +50,7 @@ namespace csharp_api_xunit.Helpers
 
         private static void PrintCurlCommand(HttpRequestMessage request)
         {
-            var curl = new StringBuilder($"curl -X {request.Method} \"{request.RequestUri}\"");
+            var curl = new StringBuilder($"curl -v -X {request.Method} \"{request.RequestUri}\"");
 
             foreach (var header in request.Headers)
             {
