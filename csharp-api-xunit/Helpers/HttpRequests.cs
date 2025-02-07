@@ -55,7 +55,7 @@ namespace csharp_api_xunit.Helpers
 
             if (request.Content?.Headers != null)
             {
-                foreach (var contentHeader in request.Content?.Headers ?? Enumerable.Empty<KeyValuePair<string, IEnumerable<string>>>())
+                foreach (var contentHeader in request.Content.Headers)
                 {
                     curl.Append($" -H \"{contentHeader.Key}: {string.Join(", ", contentHeader.Value)}\"");
                 }
